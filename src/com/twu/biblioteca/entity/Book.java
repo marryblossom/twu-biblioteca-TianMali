@@ -8,12 +8,22 @@ public class Book {
     private String name;
     private String publisher;
     private String publishedTime;
+    private String state;
 
-    public Book(String id, String name, String publisher,String publishedTime) {
+    public Book(String id, String name, String publisher,String publishedTime,String state) {
         Id = id;
         this.name = name;
         this.publishedTime = publishedTime;
         this.publisher = publisher;
+        this.state = state;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getPublisher() {
@@ -48,5 +58,14 @@ public class Book {
 
     public void setId(String id) {
         Id = id;
+    }
+
+    public String toString(Book book){
+        String bookString = "book id : "+book.getId()+
+                            "   name : "+book.getName()+
+                            "   author : "+book.getPublisher()+
+                            "   publish time : "+book.getPublishedTime();
+        return bookString;
+
     }
 }

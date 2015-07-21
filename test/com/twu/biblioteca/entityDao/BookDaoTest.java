@@ -22,7 +22,7 @@ public class BookDaoTest {
 
     @Test
     public void getBookById() throws Exception {
-        Book book = new Book("2","Stray Birds","Tagore","2013-9-1");
+        Book book = new Book("2","Stray Birds","Tagore","2013-9-1","active");
         assertEquals("Stray Birds",bookDao.getBookById(books,"2").getName());
     }
 
