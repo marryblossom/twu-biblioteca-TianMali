@@ -22,6 +22,16 @@ public class MessageUtil {
     public static String returnValidateMessage(){
         return "That is not a valid book to return.";
     }
+    public static String returnToPrevious(){
+        return "Return to previous menu? Y/N";
+    }
+    public static String nothingReturnMessage(){
+        return "You have nothing to return!";
+    }
+    public static String chooseBookMessage(){
+        return "Please choose the book you want to get!";
+    }
+
     public static String optionMessage(){
         return "------------------\n"+
                 "[1]List Books\n"+

@@ -15,45 +15,62 @@ public class BibliotecaApp {
         System.out.println(MessageUtil.optionMessage());
         String inputChoose = InputOperatingUtil.getInput();
         while (true) {
+            String ifReturnPrevious;
             if (inputChoose.equals("1")) {
                 for (int i = 0; i < books.size(); i++) {
-                    if (books.get(i).getState().equals("active")){
+                    if (books.get(i).getState().equals("active")) {
                         System.out.println(books.get(i).toString(books.get(i)));
                     }
                 }
-                String inputBookChoose = InputOperatingUtil.getInput();
-                for (int i = 0; i < books.size(); i++) {
-                    if(books.get(i).getId().equals(inputBookChoose)){
-                        books.get(i).setState("locked");
-                        System.out.println(MessageUtil.readThankfulMessage());
-                        System.out.println(MessageUtil.optionMessage());
-                        inputChoose = InputOperatingUtil.getInput();
-                        break;
-                    }else {
-                        System.out.println(MessageUtil.bookNotAvailableMessage());
-                        System.out.println(MessageUtil.optionMessage());
-                        inputChoose = InputOperatingUtil.getInput();
-                        break;
+                System.out.println(MessageUtil.returnToPrevious());
+                ifReturnPrevious = InputOperatingUtil.getInput();
+                if (ifReturnPrevious.equals("Y")) {
+                    System.out.println(MessageUtil.optionMessage());
+                    inputChoose = InputOperatingUtil.getInput();
+                } else {
+                    System.out.println(MessageUtil.chooseBookMessage());
+                    String inputBookChoose = InputOperatingUtil.getInput();
+                    for (int i = 0; i < books.size(); i++) {
+                        if (books.get(i).getId().equals(inputBookChoose)) {
+                            books.get(i).setState("locked");
+                            System.out.println(MessageUtil.readThankfulMessage());
+                            System.out.println(MessageUtil.returnToPrevious());
+                            ifReturnPrevious = InputOperatingUtil.getInput();
+                            break;
+                        }
                     }
                 }
+
             } else if(inputChoose.equals("2")){
                 break;
             } else if(inputChoose.equals("3")){
+                boolean hasBook = false;
                 for (int i = 0; i < books.size(); i++) {
                     if (books.get(i).getState().equals("locked")){
+                        hasBook = true;
                         System.out.println(books.get(i).toString(books.get(i)));
                     }
                 }
-                String returnInput = InputOperatingUtil.getInput();
-                for (int i = 0; i < books.size(); i++) {
-                    if (books.get(i).getState().equals("locked")&&books.get(i).getId().equals(returnInput)){
-                        System.out.println(MessageUtil.readThankfulMessage());
-                        break;
-                    }else {
+                if(hasBook){
+                    String returnInput = InputOperatingUtil.getInput();
+                    boolean returnSuccess = false;
+                    for (int i = 0; i < books.size(); i++) {
+                        if (books.get(i).getState().equals("locked")&&books.get(i).getId().equals(returnInput)){
+                            books.get(i).setState("active");
+                            System.out.println(MessageUtil.returnThankfulMessage());
+                            returnSuccess = true;
+                        }
+                    }
+                    if(!returnSuccess){
                         System.out.println(MessageUtil.returnValidateMessage());
                         returnInput = InputOperatingUtil.getInput();
                     }
+                }else {
+                    System.out.println(MessageUtil.nothingReturnMessage());
+                    System.out.println(MessageUtil.optionMessage());
+                    inputChoose = InputOperatingUtil.getInput();
                 }
+
             } else {
                 System.out.println(MessageUtil.validMessage());
                 System.out.println(MessageUtil.optionMessage());
