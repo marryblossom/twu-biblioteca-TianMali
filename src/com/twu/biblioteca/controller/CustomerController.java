@@ -11,13 +11,13 @@ import java.util.List;
 public class CustomerController{
     CustomerDao customerDao = new CustomerDao();
 
-    public Boolean checkLogin(String libNumber,String password){
+    public Customer checkLogin(String libNumber,String password){
         List<Customer> customers = customerDao.getCustomers();
         for (Customer customer : customers) {
             if(libNumber.equals(customer.getLibraryNumber()) && password.equals(customer.getPassword())){
-                return true;
+                return customer;
             }
         }
-        return false;
+        return null;
     }
 }

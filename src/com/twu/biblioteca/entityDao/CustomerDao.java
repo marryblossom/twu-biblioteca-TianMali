@@ -12,7 +12,7 @@ public class CustomerDao {
     List<Customer> customers = new ArrayList<Customer>();
     Customer customer;
     public List<Customer> getCustomers(){
-        customer = new Customer("1","123-1234","123");
+        customer = new Customer("1","123-1234","123","Michael","123456","123Michael@126.com");
         customers.add(customer);
         return customers;
     }

@@ -4,6 +4,7 @@ import com.twu.biblioteca.controller.BookController;
 import com.twu.biblioteca.controller.CustomerController;
 import com.twu.biblioteca.controller.MovieController;
 import com.twu.biblioteca.entity.Book;
+import com.twu.biblioteca.entity.Customer;
 import com.twu.biblioteca.entity.Movie;
 import com.twu.biblioteca.util.InputOperatingUtil;
 import com.twu.biblioteca.util.MessageUtil;
@@ -55,7 +56,12 @@ public class BibliotecaApp {
         String libNumber = InputOperatingUtil.getInput();
         System.out.println(MessageUtil.loginPasswordReminderMessage());
         String pwd = InputOperatingUtil.getInput();
-        return customerController.checkLogin(libNumber,pwd);
+        Customer customer = customerController.checkLogin(libNumber,pwd);
+        if (customer != null){
+            System.out.println(customer);
+            return true;
+        }
+        return false;
     }
     public static void manageBooks(){
         for (int i = 0; i < books.size(); i++) {

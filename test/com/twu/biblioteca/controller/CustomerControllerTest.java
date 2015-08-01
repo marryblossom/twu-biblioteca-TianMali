@@ -17,6 +17,6 @@ public class CustomerControllerTest {
 
     @Test
     public void testCheckLogin() throws Exception {
-        assertTrue(customerController.checkLogin("123-1234","123"));
+        assertNull(customerController.checkLogin("123-1234","123"));
     }
 }
