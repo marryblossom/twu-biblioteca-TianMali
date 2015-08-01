@@ -30,4 +30,24 @@ public class BookDaoTest {
     public void testGetAllBooks() throws Exception {
         assertEquals(5,books.size());
     }
+    @Test
+    public void testGetBookActive()throws Exception {
+        assertEquals(5,bookDao.getBookActive(books).size());
+    }
+    @Test
+    public void testSetBookLocked()throws Exception {
+        assertNotNull(bookDao.setBookLocked(books, "1"));
+    }
+    @Test
+    public void testGetBookLocked()throws Exception {
+        books.get(0).setState("locked");
+        assertEquals(1, bookDao.getBookLocked(books).size());
+    }
+    @Test
+    public void testSetBookActive()throws Exception {
+        books.get(0).setState("locked");
+        books.get(1).setState("locked");
+        assertNotNull(bookDao.setBookActive(books, "1"));
+
+    }
 }

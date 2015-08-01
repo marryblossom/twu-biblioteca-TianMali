@@ -1,6 +1,7 @@
 package com.twu.biblioteca.entityDao;
 
 import com.twu.biblioteca.entity.Book;
+import com.twu.biblioteca.util.MessageUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,42 @@ public class BookDao {
         for (Book book:books){
             if (id.equals(book.getId())){
                 return book;
+            }
+        }
+        return null;
+    }
+    public List<Book> getBookActive(List<Book> allBooks){
+        List<Book> bookList = new ArrayList<Book>();
+        for (Book book:allBooks){
+            if (book.getState().equals("active")){
+                bookList.add(book);
+            }
+        }
+        return bookList;
+    }
+    public Book setBookLocked(List<Book> activeBooks, String choosenBook){
+        for(Book book : activeBooks){
+            if (book.getId().equals(choosenBook)){
+                book.setState("locked");
+                return book;
+            }
+        }
+        return null;
+    }
+    public List<Book> getBookLocked(List<Book> allBooks){
+        List<Book> bookList = new ArrayList<Book>();
+        for (Book book:allBooks){
+            if (book.getState().equals("locked")){
+                bookList.add(book);
+            }
+        }
+        return bookList;
+    }
+    public Book setBookActive(List<Book> lockedBooks, String choosenBook){
+        for (int i = 0; i < lockedBooks.size(); i++) {
+            if (lockedBooks.get(i).getId().equals(choosenBook)){
+                lockedBooks.get(i).setState("active");
+                return lockedBooks.get(i);
             }
         }
         return null;

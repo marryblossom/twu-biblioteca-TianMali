@@ -5,13 +5,23 @@ package com.twu.biblioteca.entity;
  */
 public class Customer {
     private String customerId;
-    private String customerName;
+    private String libraryNumber;
     private String password;
 
-    public Customer(String customerId, String customerName, String password) {
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
         this.customerId = customerId;
-        this.customerName = customerName;
-        this.password = password;
+    }
+
+    public String getLibraryNumber() {
+        return libraryNumber;
+    }
+
+    public void setLibraryNumber(String libraryNumber) {
+        this.libraryNumber = libraryNumber;
     }
 
     public String getPassword() {
@@ -22,21 +32,10 @@ public class Customer {
         this.password = password;
     }
 
-    public String getCustomerName() {
+    public Customer(String customerId, String libraryNumber, String password) {
 
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public String getCustomerId() {
-
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
         this.customerId = customerId;
+        this.libraryNumber = libraryNumber;
+        this.password = password;
     }
 }
